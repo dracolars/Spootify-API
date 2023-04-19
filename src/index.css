@@ -1,13 +1,195 @@
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+html,
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #021d32;
+  color: black;
+  text-align: center;
+  padding: 0;
+  margin: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+ul,
+li {
+  list-style: none;
+  padding: 0;
+}
+
+header {
+  color: white;
+}
+
+.song-columns {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.search-results {
+  width: 30%;
+  max-width: 420px;
+  min-width: 350px;
+  background-color: rgba(62, 193, 132, 0.6);
+  margin: 0 2em 1em 2em;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  border-radius: 6px;
+}
+
+.search-results h3 {
+  margin: 0;
+  padding: 0.5em 0 0 0;
+  font-size: 20px;
+  text-align: center;
+  color: #fbfaf8;
+}
+
+.search-results ul {
+  list-style: none;
+  margin: 0;
+}
+
+.tracklist {
+  width: 30%;
+  max-width: 420px;
+  min-width: 350px;
+  background-color: rgba(62, 193, 132, 0.6);
+  margin: 0 2em 1em 2em;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+  border-radius: 6px;
+}
+
+.tracklist h3 {
+  margin: 0;
+  padding: 0.5em 0 0 0;
+  font-size: 20px;
+  text-align: center;
+  color: #fbfaf8;
+}
+
+.tracklist ul {
+  list-style: none;
+  margin: 0;
+}
+
+.tracklist input {
+  display: block;
+  background-color: #3ec184;
+  border: none;
+  border-bottom: 1px solid black;
+  text-align: center;
+  margin: 1em auto;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.tracklist input:focus {
+  background-color: #75e4b0;
+  outline: none;
+}
+
+.track {
+  padding: 1em;
+  margin: 0.5em 0.6em;
+  font-size: 14px;
+  border-bottom: 1px solid #fbfaf8;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  background-color: #3ec184;
+  transition: all 1s;
+}
+
+.track:hover {
+  background-color: #37dd8f;
+  color: #222;
+}
+
+.title-container {
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  width: 20px;
+  margin-left: auto;
+}
+
+.track .title {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.track .artist {
+  display: inline-flex;
+  padding: 0;
+  margin: 0;
+}
+
+.track .album {
+  display: inline-flex;
+  padding: 0;
+  margin: 0;
+}
+
+.track .album::before {
+  content: "\25CF";
+  font-size: 14px;
+  padding: 0 2px;
+  transform: scale(0.5);
+}
+
+.track .add {
+  font-size: 20px;
+  margin-left: auto;
+  padding: 3px;
+}
+
+.track .add:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.search-results .add::after {
+  content: "\f0fe";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+}
+
+.tracklist .add::after {
+  content: "\f146";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+}
+
+@media only screen and (max-width: 800px) {
+  .song-columns {
+    display: block;
+  }
+
+  .search-results {
+    width: 80%;
+    margin: 1em auto;
+  }
+
+  .tracklist {
+    width: 80%;
+    margin: 1em auto;
+  }
 }
