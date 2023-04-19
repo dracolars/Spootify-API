@@ -87,12 +87,15 @@ header {
 .tracklist input {
   display: block;
   background-color: #3ec184;
+
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid white;
+  border-radius: 4px;
   text-align: center;
   margin: 1em auto;
   font-size: 16px;
   font-weight: bold;
+  color: white;
 }
 
 .tracklist input:focus {
