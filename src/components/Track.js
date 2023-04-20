@@ -9,7 +9,14 @@ function Track(props) {
         <p className="album">{props.album}</p>
       </div>
       <div className="button-container">
-        <div className="add"></div>
+        <div
+          onClick={() => props.add(props.title)}
+          className="add track-buttons"
+        ></div>
+        <div
+          onClick={() => props.remove(props.index)}
+          className="remove track-buttons"
+        ></div>
       </div>
     </li>
   );
