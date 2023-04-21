@@ -4,49 +4,14 @@ import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import Playlist from "./components/Playlist";
 import Tracklist from "./components/Tracklist";
-
-const songs = [
-  {
-    title: "Into You",
-    artist: "Ariana Grande",
-    album: "Dangerous Woman",
-  },
-  {
-    title: "'tis the damn season",
-    artist: "Taylor Swift",
-    album: "evermore",
-  },
-  {
-    title: "Delicate",
-    artist: "Taylor Swift",
-    album: "reputation",
-  },
-  {
-    title: "Violet Chemistry",
-    artist: "Miley Cyrus",
-    album: "Endless Summer Vacation",
-  },
-  { title: "Mienteme", artist: "TINI", album: "Cupido" },
-  {
-    title: "TQG",
-    artist: "Karol G, Shakira",
-    album: "Mañana Será Bonito",
-  },
-  { title: "Blind", artist: "SZA", album: "SOS" },
-  {
-    title: "Bejeweled",
-    artist: "Taylor Swift",
-    album: "Midnights",
-  },
-  { title: "10/10", artist: "Troye Sivan", album: "In A Dream" },
-  {
-    title: "positions",
-    artist: "Ariana Grande",
-    album: "Positions",
-  },
-];
+import { getSearchResults, songs } from "./logic/apiRequests";
 
 const songs2 = [];
+
+const songs3 = getSearchResults("ariana grande");
+
+console.log("songs 3 object:");
+console.log(songs3);
 
 function App() {
   const [list1] = React.useState(songs);
