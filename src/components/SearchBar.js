@@ -4,9 +4,10 @@ function SearchBar(props) {
   function handleClick() {
     let queryElement = document.getElementById("search");
     let query = queryElement.value;
-    props.search(query);
-    console.log(queryElement);
-    console.log(query);
+    if (query !== "") {
+      props.search(query);
+      console.log(query);
+    }
   }
 
   return (
@@ -18,8 +19,20 @@ function SearchBar(props) {
         handleClick();
       }}
     >
-      <input type="text" className="search-bar" name="search" id="search" />
-      <input type="button" value="submit" onClick={handleClick} />
+      <input
+        type="text"
+        className="search-bar"
+        name="search"
+        id="search"
+        placeholder="search song"
+        required
+      />
+      <input
+        className="search-button"
+        type="button"
+        value="search"
+        onClick={handleClick}
+      />
     </form>
   );
 }
