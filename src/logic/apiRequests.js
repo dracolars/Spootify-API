@@ -1,5 +1,32 @@
-const token =
-  "BQAnB0y6Z-ZBMHdzmaMihd7j7Cy3R899kn8nKsAieI0uI2Gp1lYwwBEp0yQ82HtwPAUJmvFRjcKHW8wSIYWduVIPr1g2brM1PABA_IvR7KpEdrUu_oKDtTrbrbpvDw6QEPZrD9DahNRm_84BbsUX4YyG2GUKWsXzq6r0VrdGpUxvGw1R6iGEX549bDsLnP1wWCzvO7kYDSQhYQIZxP6TdYhFZd9lYno2L8itN2DdafzFQPJnHMtynRhMT_Kic3VYxmBjuOeHBQDccxXYr9-Hg6yKMkY3RQ2GdpeJaL6443KWmp2MjUl8GpM2uOvNz0R0z3VDy0svYmQwRTq3_CJkaMVdeelT";
+var client_id = "f3a81909681b41558ce9bdd4add1f7c4";
+var client_s = "0b9d370f6e714679976d45cc16c99b6c";
+
+async function getTokenData() {
+  try {
+    const response = await fetch("https://accounts.spotify.com/api/token", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body:
+        "grant_type=client_credentials&client_id=" +
+        client_id +
+        "&client_secret=" +
+        client_s,
+    });
+    if (response.ok) {
+      const jsonResponse = await response.json();
+      console.log(jsonResponse);
+      return jsonResponse.access_token;
+    }
+    throw new Error("Token request failed");
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+var token = await getTokenData();
+
 async function fetchWebApi(endpoint, method, body) {
   try {
     const res = await fetch(`${endpoint}`, {
@@ -9,16 +36,19 @@ async function fetchWebApi(endpoint, method, body) {
       method,
       body: JSON.stringify(body),
     });
-    return await res.json();
+    if (res.ok) {
+      const jsonResponse = await res.json();
+      return jsonResponse;
+    }
     throw new Error("Request failed!");
   } catch (error) {
     console.log(error.message);
   }
 }
 
-let songs;
-
 async function getSearchResults(query) {
+  console.log("in function getSearchResults with param : " + query);
+  let songs = [];
   //define endpoint and query
   let endpoint = "https://api.spotify.com/v1/search?q=";
   let q = query.replace(" ", "%20");
@@ -48,7 +78,7 @@ async function getSearchResults(query) {
     return TrackObject;
   });
 
-  console.log(songs);
+  return songs;
 }
 
-export { getSearchResults, songs };
+export { getSearchResults, token };
