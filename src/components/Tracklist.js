@@ -2,6 +2,7 @@ import React from "react";
 import Track from "./Track";
 
 function Tracklist(props) {
+  console.log(props.songs);
   return (
     <div className="tracklist">
       <h3>Playlist</h3>
@@ -23,6 +24,7 @@ function Tracklist(props) {
               title={song.title}
               artist={song.artist}
               album={song.album}
+              image={song.image}
               remove={props.remove}
               add={props.add}
             />

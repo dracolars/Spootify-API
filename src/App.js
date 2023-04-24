@@ -4,7 +4,7 @@ import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import Playlist from "./components/Playlist";
 import Tracklist from "./components/Tracklist";
-import { getSearchResults, songs, token } from "./logic/apiRequests";
+import { getSearchResults } from "./logic/apiRequests";
 
 const songs2 = [];
 
@@ -32,6 +32,7 @@ function App() {
       title: newSong[0]["title"],
       artist: newSong[0]["artist"],
       album: newSong[0]["album"],
+      image: newSong[0]["image"],
     };
     let newList2 = list2.slice();
     newList2.push(newSongObject);

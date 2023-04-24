@@ -1,6 +1,3 @@
-var client_id = "f3a81909681b41558ce9bdd4add1f7c4";
-var client_s = "0b9d370f6e714679976d45cc16c99b6c";
-
 async function getTokenData() {
   try {
     const response = await fetch("https://accounts.spotify.com/api/token", {
@@ -9,14 +6,12 @@ async function getTokenData() {
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body:
-        "grant_type=client_credentials&client_id=" +
-        client_id +
-        "&client_secret=" +
-        client_s,
+        `grant_type=client_credentials&client_id=${process.env.REACT_APP_CLIENT_ID}` +
+        `&client_secret=${process.env.REACT_APP_CLIENT_SECRET}`,
     });
     if (response.ok) {
       const jsonResponse = await response.json();
-      console.log(jsonResponse);
+      //console.log(jsonResponse);
       return jsonResponse.access_token;
     }
     throw new Error("Token request failed");
@@ -47,8 +42,9 @@ async function fetchWebApi(endpoint, method, body) {
 }
 
 async function getSearchResults(query) {
-  console.log("in function getSearchResults with param : " + query);
+  console.log("function getSearchResults() param: " + query);
   let songs = [];
+
   //define endpoint and query
   let endpoint = "https://api.spotify.com/v1/search?q=";
   let q = query.replace(" ", "%20");
@@ -60,6 +56,7 @@ async function getSearchResults(query) {
 
   // if successful, then let's work with the json object, tracks.items (that contain the songs)
   let tracks = response.tracks.items;
+  console.log(tracks);
 
   // make json objects into our format to fit each <Track> by extracting id, name, artist(s) and album.
   songs = tracks.map((track) => {
@@ -68,6 +65,7 @@ async function getSearchResults(query) {
       title: track.name,
       album: track.album.name,
       artist: [],
+      image: track.album.images[2],
     };
 
     for (let i = 0; i < track.artists.length; i++) {

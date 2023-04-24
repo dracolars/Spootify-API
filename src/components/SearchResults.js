@@ -15,6 +15,7 @@ function SearchResults(props) {
               title={song.title}
               artist={song.artist}
               album={song.album}
+              image={song.image}
               add={props.add}
               remove={props.remove}
             />

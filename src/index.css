@@ -43,7 +43,7 @@ header {
   background-color: white;
   border: none;
   border-bottom: 2px solid #3ec184;
-  border-radius: 4px;
+  border-radius: 2px;
   text-align: center;
   font-size: 20px;
   font-weight: bold;
@@ -62,29 +62,29 @@ header {
 }
 
 #searchForm input.search-button {
+  margin: 10px 0;
   width: 100px;
-  height: 34px;
+  height: 35px;
   text-align: center;
   font-size: 18px;
   font-weight: bold;
-  box-shadow: 0 0 8px #00c86b;
   border-bottom: 2px solid #3ec184;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   color: black;
 }
 
 #searchForm input.search-button:hover {
-  background-color: #111;
+  color: #3ec184;
   border: 2px solid #3ec184;
-  box-shadow: 0 0 12px #3ec184;
-  color: #00c86b;
+  background-color: #ddd;
+  box-shadow: 0 0 6px #3ec184;
 }
 
 #searchForm input.search-button:active {
-  background-color: #3ec184;
+  background-color: black;
   box-shadow: 0 0 18px #3ec184;
-  color: black;
+  color: white;
 }
 
 /* - - -  {   END  SEARCH FORM    }  - - -  */
@@ -111,10 +111,11 @@ header {
 
 .search-results h3 {
   margin: 0 0 0.6em 0;
-  padding: 0.7em 0 0.2em 0;
+  padding: 0.7em 0 0em 0;
   font-size: 20px;
   text-align: center;
   color: white;
+  font-weight: 900;
 }
 
 .search-results ul {
@@ -140,6 +141,7 @@ header {
   font-size: 20px;
   text-align: center;
   color: white;
+  font-weight: 900;
 }
 
 .tracklist ul {
@@ -152,7 +154,7 @@ header {
   background-color: #3ec184;
   border: none;
   border-bottom: 2px solid white;
-  border-radius: 4px;
+  border-radius: 2px;
   text-align: center;
   margin: 0 auto 1em auto;
   height: 30px;
@@ -172,7 +174,7 @@ header {
   margin: 1.5em auto;
   padding: 8px 14px;
   display: block;
-  color: #3ec184;
+  color: white;
   background-color: #111;
   border: 1px solid black;
   cursor: pointer;
@@ -181,19 +183,18 @@ header {
   font-size: 0.9em;
   font-weight: bold;
   text-align: center;
-  transition: all 0.5s;
+  border: 2px solid black;
   box-shadow: 0 0 2px #222;
 }
 
 .tracklist button:hover {
   color: #66d09f;
+  border: 2px solid #3ec184;
 }
 
 .tracklist button:active {
-  transition: all 0s;
   color: white;
-  background-color: black;
-  box-shadow: 1px -1px 3px white;
+  border: 2px solid #3ec184;
 }
 
 /* - - -  {   END SEARCH RESULTS & TRACKLIST   }  - - -  */
@@ -218,47 +219,45 @@ header {
 }
 
 .title-container {
-  width: 100%;
+  line-height: 1em;
 }
 
 .button-container {
   display: flex;
   width: 20px;
   margin-left: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover-container img {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+  margin-top: 6px;
+  border-radius: 4px;
 }
 
 .track .title {
   display: block;
-  width: 100%;
   padding: 0;
   margin: 0;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 16px;
+  line-height: 20px;
 }
 
-.track .artist {
-  display: inline-flex;
-  padding: 0;
-  margin: 0;
-}
-
-.track .album {
-  display: inline-flex;
-  padding: 0;
-  margin: 0;
-}
-
-.track .album::before {
-  content: "\25CF";
-  font-size: 14px;
-  padding: 0 2px;
-  transform: scale(0.5);
+.artist-album-separator {
+  font-size: 5px;
+  vertical-align: text-bottom;
+  padding: 0 4px;
 }
 
 .track .track-buttons {
-  font-size: 20px;
+  font-size: 23px;
+  font-size: 200;
   margin-left: auto;
-  padding: 3px;
+  padding: 5px;
   display: none;
 }
 
