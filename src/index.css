@@ -3,8 +3,7 @@ code {
     monospace;
 }
 
-html,
-body {
+html {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -16,6 +15,10 @@ body {
   text-align: center;
   padding: 0;
   margin: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(1, 31, 57, 0.4)), #00060b;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
 }
 
 ul,
@@ -26,6 +29,17 @@ li {
 
 header {
   color: white;
+}
+
+header h1 {
+  letter-spacing: 0.1em;
+  margin-bottom: 0;
+}
+
+header h2 {
+  margin-bottom: 0.5em;
+  padding: 0 4px;
+  font-size: 20px;
 }
 
 /* - - -  {   START SEARCH FORM    }  - - -  */
@@ -69,7 +83,7 @@ header {
   font-size: 18px;
   font-weight: bold;
   border-bottom: 2px solid #3ec184;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   color: black;
 }
@@ -97,54 +111,51 @@ header {
 
 /* - - -  {   START SEARCH RESULTS & TRACKLIST   }  - - -  */
 
-.search-results {
-  width: 30%;
-  max-width: 420px;
+div.search-results,
+div.tracklist {
+  width: 40%;
+  max-width: 550px;
   min-width: 350px;
-  background-color: rgba(62, 193, 132, 0.7);
-  margin: 0 2em 1em 2em;
+  background-color: rgba(10, 10, 10, 0.7);
+  border: 2px solid beige;
+  margin: 0 2em;
   padding: 0;
   list-style: none;
   text-align: left;
   border-radius: 6px;
+  max-height: 670px;
 }
 
-.search-results h3 {
+div.search-results ul {
+  max-height: 600px;
+  overflow-y: scroll;
+  scrollbar-color: #001d0f #3ec184;
+  scrollbar-width: thin;
+}
+
+div.tracklist ul {
+  max-height: 500px;
+  overflow-y: scroll;
+  scrollbar-color: #001d0f #3ec184;
+  scrollbar-width: thin;
+}
+
+div.search-results ul::-webkit-scrollbar,
+div.tracklist ul::-webkit-scrollbar {
+  display: none;
+}
+
+.song-columns h3 {
   margin: 0 0 0.6em 0;
   padding: 0.7em 0 0em 0;
   font-size: 20px;
+  letter-spacing: 0.2em;
   text-align: center;
   color: white;
   font-weight: 900;
 }
 
-.search-results ul {
-  list-style: none;
-  margin: 0;
-}
-
-.tracklist {
-  width: 30%;
-  max-width: 420px;
-  min-width: 350px;
-  background-color: rgba(62, 193, 132, 0.7);
-  margin: 0 2em 1em 2em;
-  padding: 0;
-  list-style: none;
-  text-align: left;
-  border-radius: 6px;
-}
-
-.tracklist h3 {
-  margin: 0 0 0.6em 0;
-  padding: 0.7em 0 0.2em 0;
-  font-size: 20px;
-  text-align: center;
-  color: white;
-  font-weight: 900;
-}
-
-.tracklist ul {
+.song-columns ul {
   list-style: none;
   margin: 0;
 }
@@ -170,8 +181,14 @@ header {
   outline: none;
 }
 
+.tracklist input::-webkit-input-placeholder {
+  color: #ddd;
+  font-weight: 600;
+  font-style: italic;
+}
+
 .tracklist button {
-  margin: 1.5em auto;
+  margin: 0.9em auto;
   padding: 8px 14px;
   display: block;
   color: white;
@@ -183,8 +200,7 @@ header {
   font-size: 0.9em;
   font-weight: bold;
   text-align: center;
-  border: 2px solid black;
-  box-shadow: 0 0 2px #222;
+  border: 2px solid #66d09f;
 }
 
 .tracklist button:hover {
@@ -195,6 +211,7 @@ header {
 .tracklist button:active {
   color: white;
   border: 2px solid #3ec184;
+  box-shadow: 0 0 15px #3ec184;
 }
 
 /* - - -  {   END SEARCH RESULTS & TRACKLIST   }  - - -  */
@@ -205,11 +222,11 @@ header {
   padding: 1em;
   margin: 0.5em 0.6em;
   font-size: 14px;
-  border-bottom: 2px solid #bff0f4;
-  border-radius: 5px;
+  border-radius: 2px;
   display: flex;
   align-items: center;
   background-color: #3ec184;
+  color: black;
   transition: all 0.5s;
 }
 
@@ -231,8 +248,8 @@ header {
 }
 
 .cover-container img {
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
   margin-right: 10px;
   margin-top: 6px;
   border-radius: 4px;
@@ -254,10 +271,11 @@ header {
 }
 
 .track .track-buttons {
-  font-size: 23px;
+  font-size: 22px;
   font-size: 200;
   margin-left: auto;
   padding: 5px;
+  margin-left: 4px;
   display: none;
 }
 
@@ -289,17 +307,70 @@ header {
 /* - - -  {   END TRACK   }  - - -  */
 
 @media only screen and (max-width: 800px) {
+  header h1 {
+    font-size: 25px;
+    margin: 1em 0 0.5em 0;
+  }
+
+  header h2 {
+    font-size: 20px;
+    display: none;
+  }
+
+  #searchForm input.search-bar {
+    width: 200px;
+    height: 25px;
+  }
+
+  #searchForm input.search-button {
+    height: 35px;
+    margin: 0;
+  }
+
+  /* - - - { TRACK COLUMNS } - - -  */
   .song-columns {
     display: block;
+    margin: 1em auto;
+    width: 100%;
   }
 
-  .search-results {
+  div.search-results,
+  div.tracklist {
     width: 80%;
     margin: 1em auto;
+    max-height: 420px;
   }
 
-  .tracklist {
-    width: 80%;
-    margin: 1em auto;
+  div.search-results ul::-webkit-scrollbar,
+  div.tracklist ul::-webkit-scrollbar {
+    display: none;
+  }
+
+  div.search-results ul,
+  div.tracklist ul {
+    height: 250px;
+    overflow-y: scroll;
+    scrollbar-color: #001d0f #3ec184;
+    scrollbar-width: thin;
+  }
+
+  .track {
+    padding: 0 1em 0 0.6em;
+    margin: 0.5em 0.6em;
+    font-size: 14px;
+    border-bottom: 2px solid black;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    background-color: #3ec184;
+    transition: all 0.5s;
+  }
+
+  .cover-container img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    margin-top: 6px;
+    border-radius: 4px;
   }
 }

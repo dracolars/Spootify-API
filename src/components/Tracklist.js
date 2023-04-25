@@ -14,6 +14,7 @@ function Tracklist(props) {
         id="playlist-name"
         required
       />
+      {props.songs.length > 0 && <button>Create Playlist</button>}
       <ul>
         {props.songs.map((song, index) => {
           return (
@@ -31,7 +32,6 @@ function Tracklist(props) {
           );
         })}
       </ul>
-      {props.songs.length > 0 && <button>Create Playlist</button>}
     </div>
   );
 }
