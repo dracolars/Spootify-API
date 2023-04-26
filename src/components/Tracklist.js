@@ -1,8 +1,8 @@
 import React from "react";
 import Track from "./Track";
+import SpotifySave from "../logic/spotifySave";
 
 function Tracklist(props) {
-  console.log(props.songs);
   return (
     <div className="tracklist">
       <h3>Playlist</h3>
@@ -14,7 +14,9 @@ function Tracklist(props) {
         id="playlist-name"
         required
       />
-      {props.songs.length > 0 && <button>Create Playlist</button>}
+      {props.songs.length > 0 && (
+        <button onClick={SpotifySave.getAccessToken}>Create Playlist</button>
+      )}
       <ul>
         {props.songs.map((song, index) => {
           return (

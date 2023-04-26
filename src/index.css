@@ -27,6 +27,18 @@ li {
   padding: 0;
 }
 
+.loading-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.loading-p {
+  color: white;
+}
+
 header {
   color: white;
 }

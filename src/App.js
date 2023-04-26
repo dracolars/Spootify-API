@@ -1,27 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
 import SearchResults from "./components/SearchResults";
 import Playlist from "./components/Playlist";
 import Tracklist from "./components/Tracklist";
-import { getSearchResults } from "./logic/apiRequests";
-
-const songs2 = [];
-
-const songs3 = await getSearchResults("ariana grande");
-console.log(songs3);
+import { SpotifySearch } from "./logic/spotifySearch";
 
 function App() {
-  const [list1, setList1] = React.useState(songs3);
-  const [list2, setList2] = React.useState(songs2);
-  const [searchQuery, setSearchQuery] = React.useState("ariana grande");
+  const [list1, setList1] = React.useState([]);
+  useEffect(() => {
+    async function getInitialSongs() {
+      let initialSongs = await SpotifySearch.getSearchResults("ariana grande");
+      setList1(initialSongs);
+      console.log(initialSongs);
+    }
+    getInitialSongs();
+  }, []);
+
+  const [list2, setList2] = React.useState([]);
 
   function handleRemove(index) {
     console.log("removing index " + index + " from list " + 2);
-
     let newList = list2.slice();
     newList.splice(index, 1);
-
     setList2(newList);
   }
 
@@ -40,25 +41,36 @@ function App() {
   }
 
   async function handleSearch(query) {
-    setSearchQuery(query);
-    let newSongList = await getSearchResults(query);
+    let newSongList = await SpotifySearch.getSearchResults(query);
     console.log(newSongList);
     setList1(newSongList);
   }
 
-  return (
-    <div className="App">
-      <Header />
-      <main>
-        <SearchBar search={handleSearch} />
-        <section className="song-columns">
-          <SearchResults songs={list1} add={handleAdd} remove={handleRemove} />
-          <Tracklist songs={list2} add={handleAdd} remove={handleRemove} />
-          <Playlist />
-        </section>
-      </main>
-    </div>
-  );
+  if (list1.length === 0) {
+    return (
+      <div className="loading-div">
+        <p className="loading-p">Loading spotify search engine...</p>
+      </div>
+    );
+  } else {
+    return (
+      <div className="App">
+        <Header />
+        <main>
+          <SearchBar search={handleSearch} />
+          <section className="song-columns">
+            <SearchResults
+              songs={list1}
+              add={handleAdd}
+              remove={handleRemove}
+            />
+            <Tracklist songs={list2} add={handleAdd} remove={handleRemove} />
+            <Playlist />
+          </section>
+        </main>
+      </div>
+    );
+  }
 }
 
 export default App;
