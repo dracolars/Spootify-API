@@ -1,13 +1,10 @@
 import React from "react";
+import Spotify from "../logic/spotifySave";
 
 export default function Authentication(props) {
   function hancleClick() {
     if (window.opener !== undefined) {
-      const urlParams = window.location.hash.substr(1).split("&");
-      const tokenParam = urlParams[0].split("=");
-      const accessToken = tokenParam[1];
-      localStorage.setItem("accessToken", accessToken);
-      window.close();
+      Spotify.setAccessToken();
     }
   }
   return (

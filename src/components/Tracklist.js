@@ -8,12 +8,30 @@ function Tracklist(props) {
 
   function handleClick(e) {
     if (e.target.value === "Login to Save Playlist") {
-      SpotifySave.getAccessToken();
-      setButtonVal("Save Playlist");
+      // login Spotify popup
+      SpotifySave.popUpToken();
+
+      //check if token was saved periodically
+      const id = setInterval(checkStorage, 2000);
+      function checkStorage() {
+        let accessToken = localStorage.getItem("sp-access-token");
+        if (accessToken !== null && accessToken !== undefined) {
+          setButtonVal("Save Playlist");
+          clearInterval(id);
+        } else {
+          console.log("token not set. " + accessToken);
+        }
+      }
+
+      setInterval(() => {}, 2000);
     } else if (e.target.value === "Save Playlist") {
+      // save playlist TODO...
       console.log("saving playlist.....");
-      setButtonVal("Save Playlist");
     }
+  }
+
+  function handleChange() {
+    setButtonVal("Save Playlist");
   }
 
   return (
@@ -29,10 +47,11 @@ function Tracklist(props) {
       />
       {props.songs.length > 0 && (
         <input
-          type="button"
           onClick={handleClick}
+          onChange={handleChange}
           id="tracklist-button"
           value={buttonVal}
+          readOnly
         />
       )}
       <ul>

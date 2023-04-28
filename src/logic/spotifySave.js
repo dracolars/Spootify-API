@@ -6,19 +6,19 @@ console.log(clientID);
 const Spotify = {
   accessToken: null,
 
-  getAccessToken() {
+  popUpToken() {
     const accessURL = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUrl}`;
-    let SpotifyLoginWindow = window.open(
-      accessURL,
-      "Login with Spotify",
-      "width=600,height=700"
-    );
+    window.open(accessURL, "Login with Spotify", "width=600,height=700");
+  },
 
-    SpotifyLoginWindow.onbeforeunload = function () {
-      this.accessToken = localStorage.getItem("accessToken");
-      console.log(this.accessToken);
-      document.getElementById("tracklist-button").value = "Save Playlist";
-    };
+  setAccessToken() {
+    const urlParams = window.location.hash.substr(1).split("&");
+    const tokenParamArr = urlParams[0].split("=");
+    const accessToken = tokenParamArr[1];
+    this.accessToken = accessToken;
+    localStorage.setItem("sp-access-token", accessToken);
+    console.log(this.accessToken);
+    window.close();
   },
 
   search(searchTerm) {
