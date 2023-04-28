@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Track from "./Track";
 import SpotifySave from "../logic/spotifySave";
 
 function Tracklist(props) {
+  // const [token, setToken] = useState(null);
+  const [buttonVal, setButtonVal] = useState("Login to Save Playlist");
+
+  function handleClick(e) {
+    if (e.target.value === "Login to Save Playlist") {
+      SpotifySave.getAccessToken();
+      setButtonVal("Save Playlist");
+    } else if (e.target.value === "Save Playlist") {
+      console.log("saving playlist.....");
+      setButtonVal("Save Playlist");
+    }
+  }
+
   return (
     <div className="tracklist">
       <h3>Playlist</h3>
@@ -15,7 +28,12 @@ function Tracklist(props) {
         required
       />
       {props.songs.length > 0 && (
-        <button onClick={SpotifySave.getAccessToken}>Create Playlist</button>
+        <input
+          type="button"
+          onClick={handleClick}
+          id="tracklist-button"
+          value={buttonVal}
+        />
       )}
       <ul>
         {props.songs.map((song, index) => {

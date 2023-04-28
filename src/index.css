@@ -18,7 +18,11 @@ html {
   background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(1, 31, 57, 0.4)), #00060b;
   background-position: center;
   background-size: cover;
-  height: 100%;
+  height: 100vh;
+}
+
+body {
+  margin: 0;
 }
 
 ul,
@@ -199,28 +203,26 @@ div.tracklist ul::-webkit-scrollbar {
   font-style: italic;
 }
 
-.tracklist button {
+.tracklist #tracklist-button {
+  height: auto;
+  padding: 10px;
   margin: 0.9em auto;
-  padding: 8px 14px;
-  display: block;
   color: white;
   background-color: #111;
-  border: 1px solid black;
   cursor: pointer;
   border-radius: 10px;
-  outline: none;
   font-size: 0.9em;
   font-weight: bold;
   text-align: center;
   border: 2px solid #66d09f;
 }
 
-.tracklist button:hover {
+.tracklist #tracklist-button:hover {
   color: #66d09f;
   border: 2px solid #3ec184;
 }
 
-.tracklist button:active {
+.tracklist #tracklist-button:active {
   color: white;
   border: 2px solid #3ec184;
   box-shadow: 0 0 15px #3ec184;
@@ -385,4 +387,31 @@ div.tracklist ul::-webkit-scrollbar {
     margin-top: 6px;
     border-radius: 4px;
   }
+}
+
+/* { A U T H E N T I C A T I O N   P A G E } */
+
+main.auth {
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  color: white;
+}
+
+.auth-p {
+  margin: 15px 15px;
+  font-weight: bold;
+  line-height: 1.75em;
+}
+
+.auth-button {
+  padding: 5px 10px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
 }
