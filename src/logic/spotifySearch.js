@@ -59,7 +59,7 @@ const SpotifySearch = {
 
     // if successful, then let's work with the json object, tracks.items (that contain the songs)
     let tracks = response.tracks.items;
-    //console.log(tracks);
+    console.log(tracks);
 
     // make json objects into our format to fit each <Track> by extracting id, name, artist(s) and album.
     songs = tracks.map((track) => {
@@ -69,6 +69,7 @@ const SpotifySearch = {
         album: track.album.name,
         artist: [],
         image: track.album.images[2],
+        uri: track.uri,
       };
 
       for (let i = 0; i < track.artists.length; i++) {

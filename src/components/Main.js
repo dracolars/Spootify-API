@@ -10,11 +10,12 @@ function Main() {
   const [list1, setList1] = React.useState([]);
   useEffect(() => {
     async function getInitialSongs() {
-      let initialSongs = await SpotifySearch.getSearchResults("ariana grande");
+      let initialSongs = await SpotifySearch.getSearchResults("taylor");
       setList1(initialSongs);
       console.log(initialSongs);
     }
     getInitialSongs();
+    localStorage.removeItem("sp-access-token");
   }, []);
 
   const [list2, setList2] = React.useState([]);
@@ -34,6 +35,7 @@ function Main() {
       artist: newSong[0]["artist"],
       album: newSong[0]["album"],
       image: newSong[0]["image"],
+      uri: newSong[0]["uri"],
     };
     let newList2 = list2.slice();
     newList2.push(newSongObject);
@@ -64,7 +66,12 @@ function Main() {
               add={handleAdd}
               remove={handleRemove}
             />
-            <Tracklist songs={list2} add={handleAdd} remove={handleRemove} />
+            <Tracklist
+              songs={list2}
+              add={handleAdd}
+              remove={handleRemove}
+              resetSongs={setList2}
+            />
             <Playlist />
           </section>
         </main>

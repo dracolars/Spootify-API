@@ -137,9 +137,9 @@ div.tracklist {
   margin: 0 2em;
   padding: 0;
   list-style: none;
-  text-align: left;
   border-radius: 6px;
   max-height: 670px;
+  position: relative;
 }
 
 div.search-results ul {
@@ -242,6 +242,7 @@ div.tracklist ul::-webkit-scrollbar {
   background-color: #3ec184;
   color: black;
   transition: all 0.5s;
+  text-align: left;
 }
 
 .track:hover {
@@ -318,6 +319,59 @@ div.tracklist ul::-webkit-scrollbar {
   font-weight: 400;
 }
 
+.save-success {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  margin: 0 auto;
+  padding: 30px 0px;
+  background-color: #ddd;
+  border-radius: 6px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 0 30px black;
+}
+
+.success-message {
+  margin: auto;
+}
+
+#spotify-logo {
+  width: 155px;
+  height: 100%;
+  margin: 6px auto 10px;
+  display: block;
+}
+
+.save-success p {
+  color: black;
+  font-weight: bold;
+  line-height: 2em;
+  margin: 0px 30px;
+}
+
+.save-success button {
+  margin-top: 10px;
+  padding: 6px 12px;
+  border: none;
+  border-bottom: 2px solid #3ec184;
+  border-radius: 6px;
+  color: white;
+  background-color: #111;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.save-success button:hover {
+  color: black;
+  background-color: #3ec184;
+  border-bottom: 2px solid black;
+}
+
 /* - - -  {   END TRACK   }  - - -  */
 
 @media only screen and (max-width: 800px) {
@@ -386,6 +440,10 @@ div.tracklist ul::-webkit-scrollbar {
     margin-right: 10px;
     margin-top: 6px;
     border-radius: 4px;
+  }
+
+  .save-success {
+    top: 38%;
   }
 }
 

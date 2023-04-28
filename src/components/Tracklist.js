@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import Track from "./Track";
 import SpotifySave from "../logic/spotifySave";
+import spotifyLogo from "../assets/spotify-logo-green.png";
 
 function Tracklist(props) {
-  // const [token, setToken] = useState(null);
+  const [token, setToken] = useState(false);
   const [buttonVal, setButtonVal] = useState("Login to Save Playlist");
+  const [playlistSave, setPlaylistSave] = useState(false);
+  let playlistName = "";
 
-  function handleClick(e) {
+  async function handleClick(e) {
     if (e.target.value === "Login to Save Playlist") {
       // login Spotify popup
-      SpotifySave.popUpToken();
+      SpotifySave.getAccessToken();
 
       //check if token was saved periodically
       const id = setInterval(checkStorage, 2000);
@@ -17,21 +20,42 @@ function Tracklist(props) {
         let accessToken = localStorage.getItem("sp-access-token");
         if (accessToken !== null && accessToken !== undefined) {
           setButtonVal("Save Playlist");
+          setToken(accessToken);
           clearInterval(id);
         } else {
           console.log("token not set. " + accessToken);
         }
       }
-
       setInterval(() => {}, 2000);
-    } else if (e.target.value === "Save Playlist") {
-      // save playlist TODO...
+
+      // if button was updated, save playlist
+    } else if (e.target.value === "Save Playlist" && token) {
       console.log("saving playlist.....");
+
+      playlistName = document.getElementById("playlist-name").value;
+      let uris = props.songs.map((song) => song.uri);
+      uris.join();
+      console.log(playlistName);
+      if (playlistName && uris) {
+        let saveResponse = await SpotifySave.savePlaylist(playlistName, uris);
+        if (saveResponse.ok) {
+          console.log(saveResponse);
+          setPlaylistSave(true);
+        }
+      } else {
+        console.log("missing playlist-name");
+      }
     }
   }
 
   function handleChange() {
     setButtonVal("Save Playlist");
+  }
+
+  function handleRestart() {
+    setPlaylistSave(false);
+    props.resetSongs([]);
+    document.getElementById("playlist-name").value = "";
   }
 
   return (
@@ -53,6 +77,15 @@ function Tracklist(props) {
           value={buttonVal}
           readOnly
         />
+      )}
+      {playlistSave && (
+        <aside className="save-success">
+          <div className="success-message">
+            <p>Your playlist has been saved to</p>
+            <img id="spotify-logo" src={spotifyLogo} alt="spotify logo" />
+            <button onClick={handleRestart}>Start New</button>
+          </div>
+        </aside>
       )}
       <ul>
         {props.songs.map((song, index) => {
