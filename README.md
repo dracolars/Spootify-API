@@ -57,8 +57,13 @@ The **"Tracklist"** component holds all the tracks that the user has added to th
 
 ## Screenshots
 Mobile version:
+---
 ![](./src/assets/spootify-api-screenshot-mobile.png)
+
 Saved Playlist:
+---
 ![](./src/assets/spootify-api-screenshot-saved-playlist.png)
+
 After Spotify Authorization:
+---
 ![](./src/assets/spootify-api-screenshot-auth.png)
