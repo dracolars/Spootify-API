@@ -4,6 +4,8 @@ Create Spotify playlists in seconds.
 Front-end Engineering project.
 This app is an upgraded version of Codecademy's project "Playlist App With the Spotify API".
 
+![](./src/assets/spootify-api-screenshot-1.png)
+
 ## Content
 
 1. [Overview](#overview)
@@ -15,7 +17,7 @@ This app is an upgraded version of Codecademy's project "Playlist App With the S
 4. [Screenshots](#screenshots)
 
 ## Overview
-![](./src/assets/spootify-api-screenshot-1.png)
+
 ### Technologies Used
 - React (Front-End)
     - react-router-dom
@@ -53,7 +55,7 @@ The **"Tracklist"** component holds all the tracks that the user has added to th
 
 ## Author
 - LinkedIn: [linkedin.com/in/alex-laris](https://www.linkedin.com/in/alex-laris/)
- - Website [alexdemos.net](https://alexdemos.net/)
+- Website [alexdemos.net](https://alexdemos.net/)
 
 ## Screenshots
 Mobile version:
