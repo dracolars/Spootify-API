@@ -10,41 +10,47 @@ function Tracklist(props) {
   let playlistName = "";
 
   async function handleClick(e) {
-    if (e.target.value === "Login to Save Playlist") {
-      // login Spotify popup
-      SpotifySave.getAccessToken();
+    try {
+      if (e.target.value === "Login to Save Playlist") {
+        // login Spotify popup
+        SpotifySave.getAccessToken();
 
-      //check if token was saved periodically
-      const id = setInterval(checkStorage, 2000);
-      function checkStorage() {
-        let accessToken = localStorage.getItem("sp-access-token");
-        if (accessToken !== null && accessToken !== undefined) {
-          setButtonVal("Save Playlist");
-          setToken(accessToken);
-          clearInterval(id);
+        //check if token was saved periodically
+        const id = setInterval(checkStorage, 2000);
+        function checkStorage() {
+          let accessToken = localStorage.getItem("sp-access-token");
+          if (accessToken !== null && accessToken !== undefined) {
+            setButtonVal("Save Playlist");
+            setToken(accessToken);
+            clearInterval(id);
+          } else {
+            console.log("token not set. " + accessToken);
+          }
+        }
+        setInterval(() => {}, 2000);
+
+        // if button was updated, save playlist
+      } else if (e.target.value === "Save Playlist" && token) {
+        console.log("saving playlist.....");
+
+        playlistName = document.getElementById("playlist-name").value;
+        let uris = props.songs.map((song) => song.uri);
+        uris.join();
+        console.log(playlistName);
+        if (playlistName && uris) {
+          let saveResponse = await SpotifySave.savePlaylist(playlistName, uris);
+          if (saveResponse.ok) {
+            console.log(saveResponse);
+            setPlaylistSave(true);
+          } else {
+            console.log("access error, unable to save");
+          }
         } else {
-          console.log("token not set. " + accessToken);
+          console.log("missing playlist-name");
         }
       }
-      setInterval(() => {}, 2000);
-
-      // if button was updated, save playlist
-    } else if (e.target.value === "Save Playlist" && token) {
-      console.log("saving playlist.....");
-
-      playlistName = document.getElementById("playlist-name").value;
-      let uris = props.songs.map((song) => song.uri);
-      uris.join();
-      console.log(playlistName);
-      if (playlistName && uris) {
-        let saveResponse = await SpotifySave.savePlaylist(playlistName, uris);
-        if (saveResponse.ok) {
-          console.log(saveResponse);
-          setPlaylistSave(true);
-        }
-      } else {
-        console.log("missing playlist-name");
-      }
+    } catch (error) {
+      console.log(error.message);
     }
   }
 
