@@ -1,10 +1,10 @@
-# Spootify - Make a Spotify Playlist
+# Spootify - Make Spotify Playlists
 
 Front-end Engineering project. Make Spotify playlists in seconds.
 An upgraded version of Codecademy's project "Playlist App With the Spotify API".
 
 ---
-> This application is using Spotify's Development Mode, this will not work for all Spotify accounts (max limit 25), so if you would like to try this demo please contact the [author](#author).
+> This application is using Spotify's Development Mode, this will not save playlists for unregistered Spotify accounts (25 max). you would like to try this demo please contact the [author](#author).
 
 ---
 

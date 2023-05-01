@@ -51,6 +51,9 @@ function Tracklist(props) {
       }
     } catch (error) {
       console.log(error.message);
+      alert(
+        "Error. The playlist cannot be saved because the author has not given you access to this app. Please contact: contact@alexdemos.net to request access."
+      );
     }
   }
 
