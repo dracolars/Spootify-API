@@ -4,7 +4,7 @@ Front-end Engineering project. Make Spotify playlists in seconds.
 An upgraded version of Codecademy's project "Playlist App With the Spotify API".
 
 ---
-> This application is using Spotify's Development Mode, this will not save playlists for unregistered Spotify accounts (25 max). you would like to try this demo please contact the [author](#author).
+> This application is using Spotify's Development Mode, this will not save playlists for unregistered Spotify accounts (25 max). If you would like to try this demo please contact the [author](#author).
 
 ---
 

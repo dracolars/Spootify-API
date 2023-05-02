@@ -58,6 +58,24 @@ header h2 {
   font-size: 20px;
 }
 
+#alert-banner {
+  background-color: #111;
+  color: white;
+  padding: 4px 10px;
+  margin-bottom: 0;
+  border-bottom: 2px solid #ddd;
+}
+
+#alert-banner b {
+  font-weight: 600;
+}
+
+#alert-banner a {
+  font-weight: 500;
+  color: #3ec184;
+  text-shadow: 0 0 0.5px black;
+}
+
 /* - - -  {   START SEARCH FORM    }  - - -  */
 
 #searchForm {
